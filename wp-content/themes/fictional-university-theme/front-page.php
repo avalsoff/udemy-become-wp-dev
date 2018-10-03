@@ -13,11 +13,11 @@
   <div class="full-width-split group">
     <div class="full-width-split__one">
       <div class="full-width-split__inner">
-        <h2 class="headline headline--small-plus t-center">Upcoming Events</h2>
+        <h2 class="headline headline--small-plus t-center">Ближайшие события</h2>
 
           <?php
           $homepageEvents = new WP_Query([
-            'posts_per_page' => 2,
+            'posts_per_page' => 3,
             'post_type' => 'event',
           ]);
           
@@ -30,23 +30,23 @@
               </a>
               <div class="event-summary__content">
                 <h5 class="event-summary__title headline headline--tiny"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h5>
-                <p><?php echo wp_trim_words(get_the_content(), 18); ?> <a href="<?php the_permalink(); ?>" class="nu gray">Learn more</a></p>
+                <p><?php echo wp_trim_words(get_the_content(), 18); ?> <a href="<?php the_permalink(); ?>" class="nu gray">Читать далее</a></p>
               </div>
             </div>
           <?php
           }
           ?>
           
-        <p class="t-center no-margin"><a href="#" class="btn btn--blue">View All Events</a></p>
+        <p class="t-center no-margin"><a href="#" class="btn btn--blue">Все события</a></p>
 
       </div>
     </div>
     <div class="full-width-split__two">
       <div class="full-width-split__inner">
-        <h2 class="headline headline--small-plus t-center">From Our Blogs</h2>
+        <h2 class="headline headline--small-plus t-center">Последние записи в блоге</h2>
         <?php
           $homepagePosts = new WP_Query([
-            'posts_per_page' => 2
+            'posts_per_page' => 3
           ]);
 
           while ($homepagePosts->have_posts()) {
@@ -58,14 +58,14 @@
               </a>
               <div class="event-summary__content">
                 <h5 class="event-summary__title headline headline--tiny"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h5>
-                <p><?php echo wp_trim_words(get_the_content(), 18) ?> <a href="<?php the_permalink(); ?>" class="nu gray">Read more</a></p>
+                <p><?php echo wp_trim_words(get_the_content(), 18) ?> <a href="<?php the_permalink(); ?>" class="nu gray">Читать далее</a></p>
               </div>
             </div>
           <?php
           } wp_reset_postdata();  
         ?>
         
-        <p class="t-center no-margin"><a href="<?php echo site_url('/blog') ?>" class="btn btn--yellow">View All Blog Posts</a></p>
+        <p class="t-center no-margin"><a href="<?php echo site_url('/blog') ?>" class="btn btn--yellow">Все записи</a></p>
       </div>
     </div>
   </div>
