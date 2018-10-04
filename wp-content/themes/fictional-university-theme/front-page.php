@@ -16,28 +16,52 @@
         <h2 class="headline headline--small-plus t-center">Ближайшие события</h2>
 
           <?php
+          $today = date('Ymd');
           $homepageEvents = new WP_Query([
-            'posts_per_page' => 3,
+            'posts_per_page' => 2,
             'post_type' => 'event',
+            'meta_key' => 'event_date',
+            'orderby' => 'meta_value_num',
+            'order' => 'ASC',
+            'meta_query' => [
+              [
+                'key' => 'event_date',
+                'compare' => '>=',
+                'value' => $today,
+                'type' => 'numeric'
+              ]
+            ]
           ]);
           
           while($homepageEvents->have_posts()) {
             $homepageEvents->the_post(); ?>
             <div class="event-summary">
               <a class="event-summary__date t-center" href="<?php the_permalink(); ?>">
-                <span class="event-summary__month"><?php the_time('M') ?></span>
-                <span class="event-summary__day"><?php the_time('d') ?></span>  
+                <span class="event-summary__month"><?php
+                  $eventDate = new DateTime(get_field('event_date'));
+                  $timeStamp = $eventDate->getTimestamp();
+                  echo date_i18n('M', $timeStamp);
+                ?></span>
+                <span class="event-summary__day"><?php echo date_i18n('d', $timeStamp); ?></span>  
               </a>
               <div class="event-summary__content">
                 <h5 class="event-summary__title headline headline--tiny"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h5>
-                <p><?php echo wp_trim_words(get_the_content(), 18); ?> <a href="<?php the_permalink(); ?>" class="nu gray">Читать далее</a></p>
+                <p>
+                <?php 
+                  if (has_excerpt()) {
+                    echo get_the_excerpt();
+                  } else {
+                    echo wp_trim_words(get_the_content(), 18);
+                  }
+                ?>
+                <a href="<?php the_permalink(); ?>" class="nu gray">Читать далее</a></p>
               </div>
             </div>
           <?php
           }
           ?>
           
-        <p class="t-center no-margin"><a href="#" class="btn btn--blue">Все события</a></p>
+        <p class="t-center no-margin"><a href="<?php echo get_post_type_archive_link('event') ?>" class="btn btn--blue">Все события</a></p>
 
       </div>
     </div>
@@ -58,7 +82,15 @@
               </a>
               <div class="event-summary__content">
                 <h5 class="event-summary__title headline headline--tiny"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h5>
-                <p><?php echo wp_trim_words(get_the_content(), 18) ?> <a href="<?php the_permalink(); ?>" class="nu gray">Читать далее</a></p>
+                <p>
+                <?php 
+                  if (has_excerpt()) {
+                    echo get_the_excerpt();
+                  } else {
+                    echo wp_trim_words(get_the_content(), 18);
+                  }
+                ?> 
+                <a href="<?php the_permalink(); ?>" class="nu gray">Читать далее</a></p>
               </div>
             </div>
           <?php

@@ -1,12 +1,13 @@
 <?php
 function university_post_types() {
   register_post_type('event', [
+    'supports' => ['title', 'editor', 'excerpt'],
     'rewrite' => [
       'slug' => 'events'
     ],
     'has_archive' => true,
-    'public' => true,
-    'labels' => [
+    'public'      => true,
+    'labels'      => [
       'name'          => 'События',
       'add_new_item'  => 'Добавить событие',
       'edit_item'     => 'Редактировать событие',
@@ -15,7 +16,7 @@ function university_post_types() {
       'new_item'      => 'Добавить событие',
       'add_new'       => 'Добавить событие'
     ],
-    'menu_icon' => 'dashicons-calendar-alt'
+    'menu_icon'   => 'dashicons-calendar-alt'
   ]);
 }
 
