@@ -1777,6 +1777,7 @@ body.admin-bar .search-overlay {
   position: relative;
   display: inline-block;
   width: 200px;
+  height: 133px;
   margin-right: 15px;
   background-color: #F95738;
   overflow: hidden;
@@ -1817,6 +1818,7 @@ body.admin-bar .search-overlay {
 
 .professor-card__list-item {
     display: inline-block;
+    vertical-align: top;
     list-style: none;
   }
 

@@ -21,11 +21,11 @@
 
 
           <ul>
-            <li <?php if (is_page('about-us') || wp_get_post_parent_id(0) == 67) echo 'class="current-menu-item"'?>><a href="<?php echo site_url('/about-us') ?>">About Us</a></li>
-            <li><a href="#">Programs</a></li>
-            <li <?php if (get_post_type() == 'event' || is_page('past-events')) echo 'class="current-menu-item"' ?>><a href="<?php echo get_post_type_archive_link('event') ?>">Events</a></li>
-            <li><a href="#">Campuses</a></li>
-            <li <?php if (get_post_type() == 'post') echo 'class="current-menu-item"'?>><a href="<?php echo site_url('/blog') ?>">Blog</a></li>
+            <li <?php if (is_page('about-us') || wp_get_post_parent_id(0) == 67) echo 'class="current-menu-item"'?>><a href="<?php echo site_url('/about-us') ?>">О нас</a></li>
+            <li <?php if (get_post_type() == 'program') echo 'class="current-menu-item"'?>><a href="<?php echo get_post_type_archive_link('program') ?>">Программы</a></li>
+            <li <?php if (get_post_type() == 'event' || is_page('past-events')) echo 'class="current-menu-item"' ?>><a href="<?php echo get_post_type_archive_link('event') ?>">События</a></li>
+            <li><a href="#">Кампусы</a></li>
+            <li <?php if (get_post_type() == 'post') echo 'class="current-menu-item"'?>><a href="<?php echo site_url('/blog') ?>">Блог</a></li>
           </ul>
         </nav>
         <div class="site-header__util">

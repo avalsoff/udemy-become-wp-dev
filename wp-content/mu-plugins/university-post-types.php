@@ -1,5 +1,6 @@
 <?php
 function university_post_types() {
+  //Event post type
   register_post_type('event', [
     'supports' => ['title', 'editor', 'excerpt'],
     'rewrite' => [
@@ -17,6 +18,42 @@ function university_post_types() {
       'add_new'       => 'Добавить событие'
     ],
     'menu_icon'   => 'dashicons-calendar-alt'
+  ]);
+
+  //Program post type
+  register_post_type('program', [
+    'supports' => ['title', 'editor'],
+    'rewrite' => [
+      'slug' => 'programs'
+    ],
+    'has_archive' => true,
+    'public'      => true,
+    'labels'      => [
+      'name'          => 'Программы',
+      'add_new_item'  => 'Добавить программу',
+      'edit_item'     => 'Редактировать программу',
+      'all_items'     => 'Все программы',
+      'singular_name' => 'Программа',
+      'new_item'      => 'Добавить программу',
+      'add_new'       => 'Добавить программу'
+    ],
+    'menu_icon'   => 'dashicons-sticky'
+  ]);
+
+  //Program post type
+  register_post_type('professor', [
+    'supports' => ['title', 'editor', 'thumbnail'],
+    'public'      => true,
+    'labels'      => [
+      'name'          => 'Профессора',
+      'add_new_item'  => 'Добавить профессора',
+      'edit_item'     => 'Редактировать профессора',
+      'all_items'     => 'Все профессора',
+      'singular_name' => 'Профессор',
+      'new_item'      => 'Добавить профессора',
+      'add_new'       => 'Добавить профессора'
+    ],
+    'menu_icon'   => 'dashicons-welcome-learn-more'
   ]);
 }
 
