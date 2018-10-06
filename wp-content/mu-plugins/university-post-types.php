@@ -1,5 +1,25 @@
 <?php
 function university_post_types() {
+  //Campus post type
+  register_post_type('campus', [
+    'supports' => ['title', 'editor', 'excerpt'],
+    'rewrite' => [
+      'slug' => 'campuses'
+    ],
+    'has_archive' => true,
+    'public'      => true,
+    'labels'      => [
+      'name'          => 'Кампусы',
+      'add_new_item'  => 'Добавить кампус',
+      'edit_item'     => 'Редактировать кампус',
+      'all_items'     => 'Все кампусы',
+      'singular_name' => 'Кампус',
+      'new_item'      => 'Добавить кампус',
+      'add_new'       => 'Добавить кампус'
+    ],
+    'menu_icon'   => 'dashicons-location-alt'
+  ]);
+
   //Event post type
   register_post_type('event', [
     'supports' => ['title', 'editor', 'excerpt'],

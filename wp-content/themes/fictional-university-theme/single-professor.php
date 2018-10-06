@@ -1,8 +1,8 @@
 <?php
   get_header();
+  pageBanner();
   while(have_posts()) {
     the_post(); 
-    pageBanner();
     ?>
 
     <div class="container container--narrow page-section">
