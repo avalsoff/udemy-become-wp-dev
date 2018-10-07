@@ -74,31 +74,23 @@
           echo '<h2 class="headline headline--medium">Предстоящие события</h2>';
           
           while($homepageEvents->have_posts()) {
-            $homepageEvents->the_post(); ?>
-            <div class="event-summary">
-              <a class="event-summary__date t-center" href="<?php the_permalink(); ?>">
-                <span class="event-summary__month"><?php
-                  $eventDate = new DateTime(get_field('event_date'));
-                  $timeStamp = $eventDate->getTimestamp();
-                  echo date_i18n('M', $timeStamp);
-                ?></span>
-                <span class="event-summary__day"><?php echo date_i18n('d', $timeStamp); ?></span>  
-              </a>
-              <div class="event-summary__content">
-                <h5 class="event-summary__title headline headline--tiny"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h5>
-                <p>
-                <?php 
-                  if (has_excerpt()) {
-                    echo get_the_excerpt();
-                  } else {
-                    echo wp_trim_words(get_the_content(), 18);
-                  }
-                ?>
-                <a href="<?php the_permalink(); ?>" class="nu gray">Читать далее</a></p>
-              </div>
-            </div>
-          <?php
+            $homepageEvents->the_post();            
+            get_template_part('template-parts/content-event');
           }
+        }
+        wp_reset_postdata();
+
+        $relatedCampuses = get_field('related_campus');
+
+        if ($relatedCampuses) {
+          echo '<hr class="section-break">';
+          echo '<h2 class="headline headline--medium">' . get_the_title() . ' преподается в этих кампусах:</h2>';
+
+          echo '<ul class="min-list link-list">';
+          foreach ($relatedCampuses as $campus) {
+            ?> <li><a href="<?php echo get_the_permalink($campus); ?>"><?php echo get_the_title($campus) ?></a></li><?php
+          }
+          echo '</ul>';
         }
         ?>
 
